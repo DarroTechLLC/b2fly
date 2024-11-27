@@ -24,5 +24,14 @@ public class AdminService {
     public List<Order> viewAllOrders() {
         return orderRepository.findAll();
     }
+
+    public void reorderProducts(List<Long> productIds) {
+        for (int i = 0; i < productIds.size(); i++) {
+            Product product = productRepository.findById(productIds.get(i)).orElseThrow();
+            product.setSortOrder(i); // Ensure a `sortOrder` field exists in `Product`
+            productRepository.save(product);
+        }
+    }
+
 }
 

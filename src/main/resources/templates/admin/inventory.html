@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Inventory</title>
+    <script th:src="@{/js/Sortable-master/Sortable.min.js}"></script>
+</head>
+<body>
+<h1>Inventory Management</h1>
+<div id="product-list">
+    <div th:each="product : ${products}" draggable="true" data-id="${product.id}">
+        <p>
+            <span th:text="${product.name}"></span>
+            <button th:onclick="'editProduct(' + ${product.id} + ')'">Edit</button>
+            <button th:onclick="'deleteProduct(' + ${product.id} + ')'">Delete</button>
+        </p>
+    </div>
+</div>
+<script>
+    const el = document.getElementById('product-list');
+    const sortable = new Sortable(el, {
+        animation: 150,
+        onEnd: function (evt) {
+            const sortedData = [...el.children].map(item => item.dataset.id);
+            fetch('/admin/inventory/reorder', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(sortedData)
+            });
+        }
+    });
+</script>
+</body>
+</html>

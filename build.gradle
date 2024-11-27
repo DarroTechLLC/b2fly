@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.stripe:stripe-java:21.13.0' // Secure payments
     implementation 'com.paypal.sdk:rest-api-sdk:1.14.0'
     implementation 'io.github.cdimascio:dotenv-java:3.0.0' // java-dotenv
+    implementation 'org.webjars:sortablejs:1.15.0' // Drag-and-drop functionality
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     developmentOnly 'org.springframework.boot:spring-boot-docker-compose'

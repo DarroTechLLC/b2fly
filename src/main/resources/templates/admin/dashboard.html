@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Admin Dashboard</title>
 </head>
 <body>
-
+<h1>Admin Dashboard</h1>
+<h2>Products Overview</h2>
+<ul>
+    <li th:each="product : ${products}">
+        <span th:text="${product.name}"></span> -
+        <span th:text="${product.quantity}"></span> in stock
+    </li>
+</ul>
+<h2>Recent Orders</h2>
+<ul>
+    <li th:each="order : ${orders}">
+        <span th:text="${order.id}"></span> -
+        <span th:text="${order.status}"></span>
+    </li>
+</ul>
 </body>
 </html>
