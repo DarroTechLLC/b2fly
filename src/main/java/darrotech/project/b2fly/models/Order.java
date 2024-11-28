@@ -25,8 +25,6 @@ public class Order {
 
     private String status; // "PENDING", "SHIPPED", etc.
 
-    public void setStatus(String status) {
-    }
-
-    // Getters and Setters
+    @Column(nullable = false)
+    private String address;
 }
